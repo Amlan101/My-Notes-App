@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.mynotes.database.NoteDao
 import com.example.mynotes.database.NoteDatabase
-import com.example.mynotes.presentation.NoteViewModel
-import com.example.mynotes.presentation.NoteViewModelFactory
+import com.example.mynotes.viewmodel.NoteViewModel
+import com.example.mynotes.viewmodel.NoteViewModelFactory
 import com.example.mynotes.repository.NoteRepository
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        val noteRepository = NoteRepository(NoteDao)
+        val noteDao = NoteDatabase.getDatabase(this).getNoteDao()
+        val noteRepository = NoteRepository(noteDao)
         val viewModelProviderFactory =  NoteViewModelFactory(application, noteRepository)
         noteViewModel = ViewModelProvider(this, viewModelProviderFactory)[NoteViewModel::class.java]
     }

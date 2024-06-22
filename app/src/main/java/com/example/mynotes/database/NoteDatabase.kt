@@ -13,15 +13,15 @@ abstract class NoteDatabase: RoomDatabase(){
 
     companion object{
         @Volatile
-        private var INSTANCE: RoomDatabase? = null
+        private var INSTANCE: NoteDatabase? = null
 
-        fun getDatabase(context: Context): RoomDatabase{
+        fun getDatabase(context: Context): NoteDatabase{
             val tempInstance = INSTANCE
             if(tempInstance != null) return tempInstance
             synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    RoomDatabase::class.java,
+                    NoteDatabase::class.java,
                     "Notes_database"
                 ).build()
                 INSTANCE = instance

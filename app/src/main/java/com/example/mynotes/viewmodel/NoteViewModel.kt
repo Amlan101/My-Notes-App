@@ -1,15 +1,17 @@
-package com.example.mynotes.presentation
+package com.example.mynotes.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.example.mynotes.model.Note
 import com.example.mynotes.repository.NoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NoteViewModel(application: Application, private val noteRepository: NoteRepository): AndroidViewModel(application) {
+class NoteViewModel(
+    application: Application,
+    private val noteRepository: NoteRepository
+): AndroidViewModel(application) {
 
     fun addNote(note: Note) =
         viewModelScope.launch(Dispatchers.IO) {

@@ -46,7 +46,6 @@ class NoteAdapter(): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     }
 
     // This is used to efficiently update the contents of a recycler view without refreshing the entire dataset
-
     private val differCallback = object : DiffUtil.ItemCallback<Note>(){
 
         // This function is used to check if the items of the Note class are same by comparing each of their attributes
